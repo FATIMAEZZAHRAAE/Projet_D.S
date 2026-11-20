@@ -1,0 +1,625 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>IoT Smart Monitor</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Icons -->
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+<!-- ================= LOGIN ================= -->
+
+<section id="loginPage" class="login-container">
+
+    <div class="login-card">
+
+        <div class="login-logo">
+            <i class="fa-solid fa-microchip"></i>
+        </div>
+
+        <h1>IoT Smart Monitor</h1>
+
+        <p class="login-subtitle">
+            Welcome to your IoT supervision platform
+        </p>
+
+        <form id="loginForm">
+
+            <label>Email Address</label>
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Enter your email"
+                value="admin@example.com"
+                required
+            >
+
+            <label>Password</label>
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Enter your password"
+                required
+            >
+
+            <button type="submit" class="login-btn">
+                Sign In <i class="fa-solid fa-arrow-right"></i>
+            </button>
+
+            <p id="loginMessage"></p>
+
+        </form>
+
+        <div class="login-footer">
+            IoT Data Supervision System with AI
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= APPLICATION ================= -->
+
+<section id="appPage" class="app hidden">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                <i class="fa-solid fa-microchip"></i>
+            </div>
+
+            <div>
+                <h2>IoT Monitor</h2>
+                <small>SMART PLATFORM</small>
+            </div>
+
+        </div>
+
+        <p class="menu-label">MAIN MENU</p>
+
+        <nav>
+
+            <button class="nav-btn active" data-page="dashboard">
+                <i class="fa-solid fa-chart-pie"></i>
+                Dashboard
+            </button>
+
+            <button class="nav-btn" data-page="sensors">
+                <i class="fa-solid fa-microchip"></i>
+                Sensors
+            </button>
+
+            <button class="nav-btn" data-page="monitoring">
+                <i class="fa-solid fa-wave-square"></i>
+                Monitoring
+            </button>
+
+            <button class="nav-btn" data-page="analytics">
+                <i class="fa-solid fa-brain"></i>
+                AI Analytics
+            </button>
+
+            <button class="nav-btn" data-page="alerts">
+                <i class="fa-solid fa-bell"></i>
+                Alerts
+                <span class="nav-count">2</span>
+            </button>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="connection-box">
+
+                <span class="online-dot"></span>
+
+                <div>
+                    <strong>System Online</strong>
+                    <small>All services running</small>
+                </div>
+
+            </div>
+
+            <button id="logoutBtn" class="logout">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Logout
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div>
+                <h1 id="pageTitle">Dashboard Overview</h1>
+                <p>Monitor and analyze your IoT devices in real time</p>
+            </div>
+
+            <div class="topbar-right">
+
+                <div class="live-status">
+                    <span class="online-dot"></span>
+                    LIVE SYSTEM
+                </div>
+
+                <div class="user-profile">
+
+                    <div class="avatar">A</div>
+
+                    <div>
+                        <strong>Administrator</strong>
+                        <small>System Admin</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- ================= DASHBOARD ================= -->
+
+        <section id="dashboard" class="page">
+
+            <div class="section-heading">
+
+                <div>
+                    <h2>Overview Dashboard</h2>
+                    <p>Real-time IoT system performance</p>
+                </div>
+
+                <span class="demo-label">DEMO DATA</span>
+
+            </div>
+
+
+            <!-- KPI CARDS -->
+
+            <div class="stats-grid">
+
+                <div class="stat-card purple-card">
+
+                    <div class="stat-top">
+                        Total Sensors
+                        <i class="fa-solid fa-microchip"></i>
+                    </div>
+
+                    <h2 id="totalSensors">12</h2>
+
+                    <small>Registered devices</small>
+
+                </div>
+
+
+                <div class="stat-card green-card">
+
+                    <div class="stat-top">
+                        Online Sensors
+                        <i class="fa-solid fa-wifi"></i>
+                    </div>
+
+                    <h2 id="onlineSensors">10</h2>
+
+                    <small>Devices connected</small>
+
+                </div>
+
+
+                <div class="stat-card orange-card">
+
+                    <div class="stat-top">
+                        Active Alerts
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                    </div>
+
+                    <h2 id="activeAlerts">2</h2>
+
+                    <small>Require attention</small>
+
+                </div>
+
+
+                <div class="stat-card cyan-card">
+
+                    <div class="stat-top">
+                        System Accuracy
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+
+                    <h2>96.4%</h2>
+
+                    <small>Demo AI indicator</small>
+
+                </div>
+
+            </div>
+
+
+            <!-- CHARTS -->
+
+            <div class="charts-grid">
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h3>Temperature Monitoring</h3>
+                            <p>Temperature evolution during the day</p>
+                        </div>
+
+                        <span class="chart-unit">°C</span>
+
+                    </div>
+
+                    <div class="chart-container">
+                        <canvas id="temperatureChart"></canvas>
+                    </div>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h3>Sensor Distribution</h3>
+                            <p>Connected devices status</p>
+                        </div>
+
+                    </div>
+
+                    <div class="chart-container">
+                        <canvas id="sensorChart"></canvas>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BOTTOM PANELS -->
+
+            <div class="bottom-grid">
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h3>Recent Alerts</h3>
+                            <p>Latest system notifications</p>
+                        </div>
+
+                        <span class="small-tag">2 NEW</span>
+
+                    </div>
+
+                    <div id="recentAlerts" class="alert-list"></div>
+
+                </div>
+
+
+                <div class="panel ai-panel">
+
+                    <div class="panel-header">
+
+                        <h3>AI Intelligence</h3>
+
+                        <span class="ai-badge">
+                            <i class="fa-solid fa-brain"></i> AI
+                        </span>
+
+                    </div>
+
+                    <div class="ai-content">
+
+                        <div class="ai-symbol">
+                            <i class="fa-solid fa-robot"></i>
+                        </div>
+
+                        <div>
+                            <h4>Smart Anomaly Detection</h4>
+
+                            <p>
+                                AI module ready to analyze sensor data
+                                and identify abnormal behavior.
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div class="ai-progress">
+
+                        <span>Demo confidence indicator</span>
+
+                        <strong>96.4%</strong>
+
+                    </div>
+
+                    <div class="progress-bar">
+                        <div></div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= SENSORS ================= -->
+
+        <section id="sensors" class="page hidden">
+
+            <div class="section-heading">
+
+                <div>
+                    <h2>Sensor Management</h2>
+                    <p>Manage all registered IoT devices</p>
+                </div>
+
+                <button id="addSensorBtn" class="primary-btn">
+                    <i class="fa-solid fa-plus"></i>
+                    Add Sensor
+                </button>
+
+            </div>
+
+
+            <div class="panel table-panel">
+
+                <h3>Registered Sensors</h3>
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>Sensor ID</th>
+                                <th>Name</th>
+                                <th>Type</th>
+                                <th>Value</th>
+                                <th>Status</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="sensorTableBody">
+
+                            <tr>
+                                <td>SENSOR-001</td>
+                                <td>Temperature 01</td>
+                                <td>Temperature</td>
+                                <td>24.5 °C</td>
+                                <td><span class="status-online">Online</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>SENSOR-002</td>
+                                <td>Humidity 01</td>
+                                <td>Humidity</td>
+                                <td>58 %</td>
+                                <td><span class="status-online">Online</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>SENSOR-003</td>
+                                <td>Temperature 02</td>
+                                <td>Temperature</td>
+                                <td>29.8 °C</td>
+                                <td><span class="status-online">Online</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>SENSOR-004</td>
+                                <td>Humidity 02</td>
+                                <td>Humidity</td>
+                                <td>--</td>
+                                <td><span class="status-offline">Offline</span></td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= MONITORING ================= -->
+
+        <section id="monitoring" class="page hidden">
+
+            <div class="section-heading">
+
+                <div>
+                    <h2>Real-Time Monitoring</h2>
+                    <p>Environmental data visualization</p>
+                </div>
+
+                <span class="demo-label">LIVE DEMO</span>
+
+            </div>
+
+
+            <div class="stats-grid">
+
+                <div class="stat-card purple-card">
+                    <div class="stat-top">Temperature</div>
+                    <h2 id="monitorTemperature">24.5°C</h2>
+                    <small>Current value</small>
+                </div>
+
+                <div class="stat-card green-card">
+                    <div class="stat-top">Humidity</div>
+                    <h2 id="monitorHumidity">58%</h2>
+                    <small>Current value</small>
+                </div>
+
+                <div class="stat-card cyan-card">
+                    <div class="stat-top">Air Quality</div>
+                    <h2>Good</h2>
+                    <small>Demo status</small>
+                </div>
+
+                <div class="stat-card orange-card">
+                    <div class="stat-top">Active Devices</div>
+                    <h2>10</h2>
+                    <small>Connected sensors</small>
+                </div>
+
+            </div>
+
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+                        <h3>Live Temperature Curve</h3>
+                        <p>Simulated sensor measurements</p>
+                    </div>
+
+                    <span class="chart-unit">°C</span>
+
+                </div>
+
+                <div class="chart-container large-chart">
+                    <canvas id="monitoringChart"></canvas>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= AI ANALYTICS ================= -->
+
+        <section id="analytics" class="page hidden">
+
+            <div class="section-heading">
+
+                <div>
+                    <h2>AI Analytics</h2>
+                    <p>Intelligent IoT data analysis</p>
+                </div>
+
+                <span class="ai-badge">
+                    <i class="fa-solid fa-brain"></i> AI MODULE
+                </span>
+
+            </div>
+
+
+            <div class="panel ai-analysis">
+
+                <div class="ai-symbol">
+                    <i class="fa-solid fa-robot"></i>
+                </div>
+
+                <h3>Smart Anomaly Detection</h3>
+
+                <p>
+                    This section will display predictions,
+                    anomaly detection and AI-generated insights
+                    from IoT sensor measurements.
+                </p>
+
+                <div class="analysis-result">
+
+                    <span>Demo analysis result</span>
+
+                    <strong>
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                        Abnormal temperature detected
+                    </strong>
+
+                    <p>
+                        Sensor 003 has a temperature value
+                        above the configured threshold.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= ALERTS ================= -->
+
+        <section id="alerts" class="page hidden">
+
+            <div class="section-heading">
+
+                <div>
+                    <h2>Alerts Management</h2>
+                    <p>Monitor and manage system notifications</p>
+                </div>
+
+                <span class="small-tag">2 ACTIVE</span>
+
+            </div>
+
+
+            <div class="panel">
+
+                <h3>System Notifications</h3>
+
+                <div id="allAlerts" class="alert-list"></div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+</section>
+
+
+<!-- APPLICATION JAVASCRIPT -->
+
+<script src="js/app.js"></script>
+
+</body>
+</html>
+
+
+
